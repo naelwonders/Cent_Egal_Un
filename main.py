@@ -1,27 +1,20 @@
 #COUPER LE MAMOUTHE:
-#start with a clean and organised architecture
-#loader et placer des pieces sur le coté gauche de l'ecran de jeu, dans une grille
+#loader et placer des pieces sur le coté gauche de l'ecran de jeu
 # rendre la position aléatoire au saint de la grille (pour un effet de pieces tombées)
-#faire le cadrage visuel avant de mettre les pieces (pour faciliter le travail)
-#trouver un cochon le placer du coté droite
-#faire le drag and drop dans le cochon
-#faire 
-# MAIN = ENTRY POINT into the game
+#faire le drag and drop
+
 
 import pygame
 from settings import SCREEN_HEIGHT, SCREEN_WIDTH
-import states # il faut aller construire les scenes start, game, end (pas de pause car pas de mouvement)
+import states # il faut aller construire les scenes start, game, end
+
+# MAIN = ENTRY POINT into the game
 #il y a plusieurs raison pour utiliser une fonction main, une d'entre elle est d'éviter les variables globales
 def main():
     pygame.init()
 
     SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    #current_scene = GameScene(SCREEN)
-
-    #this should go in the settings file (?)
-    images_folder_path = "images"
-    sprite_image = pygame.image.load("images/un_centime.png")
 
     running = True
     while running :
