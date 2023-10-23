@@ -9,10 +9,13 @@ public class MainMenu : MonoBehaviour
     //Go to the next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //now add scenes to the queue
- 
     }
     
     public void QuitGame() {
         Application.Quit();
+    }
+
+    public void BackToMainMenu() {
+        SceneManager.LoadScene(0);
     }
 }
