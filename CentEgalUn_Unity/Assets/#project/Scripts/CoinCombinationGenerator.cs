@@ -2,64 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random; //to create an alias for random
+using System.Linq;
 
 public class CoinCombinationGenerator : MonoBehaviour
 {
-    
     public List<int> listOfCoins;
     
-    //public int numberOfCoins; aller chercher le number of coins dans un autre script
-    public List<int> GenerateRandomCoinCombination()
-
+     public List<int> GenerateRandomDistinctCoinCombination()
     {
-        List<int> coins = new List<int>();
-        int totalValue = 0;
+        int[] coinDenominations = { 1, 2, 5, 10, 20, 50, 100 };
+        List<int> combination = new List<int>();
+        System.Random random = new System.Random();
 
-        // Generate 9 random coins
-        for (int i = 0; i < 9; i++)
+        // Randomly select 9 distinct coin denominations
+        List<int> availableDenominations = new List<int>(coinDenominations);
+
+        for (int i = 0; i < 8; i++)
         {
-            int remainingValue = 100 - totalValue;
-            
-            // Ensure that the remaining value allows for more coins
-            if (remainingValue >= 50 && Random.Range(0, 2) == 0)
+            if (availableDenominations.Count == 0)
             {
-                coins.Add(50);
-                totalValue += 50;
+                break; // If no more distinct denominations available, exit the loop
             }
-            else if (remainingValue >= 20 && Random.Range(0, 2) == 0)
-            {
-                coins.Add(20);
-                totalValue += 20;
-            }
-            else if (remainingValue >= 10 && Random.Range(0, 2) == 0)
-            {
-                coins.Add(10);
-                totalValue += 10;
-            }
-            else if (remainingValue >= 5)
-            {
-                coins.Add(5);
-                totalValue += 5;
-            }
-            else if (remainingValue >= 2)
-            {
-                coins.Add(2);
-                totalValue += 2;
-            }
-            else
-            {
-                coins.Add(1);
-                totalValue += 1;
-            }
+
+            int index = random.Next(0, availableDenominations.Count);
+            int selectedDenomination = availableDenominations[index];
+            combination.Add(selectedDenomination);
         }
 
-        return coins;
-    } 
+        // Ensure that the combination sums up to 1 euro (100 cents)
+        int sum = combination.Sum();
+        int remainingValue = 100 - sum;
+        
+        if (availableDenominations.Contains(remainingValue))
+        {
+            combination.Add(remainingValue);
+        }
+        else
+        {
+            // If the remaining value is not a valid denomination, randomly select one
+            int index = random.Next(0, availableDenominations.Count);
+            int selectedDenomination = availableDenominations[index];
+            combination.Add(selectedDenomination);
+        }
+
+        return combination;
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        listOfCoins = GenerateRandomCoinCombination();
+        listOfCoins = GenerateRandomDistinctCoinCombination();
+        Debug.Log(listOfCoins);
     }
 
     // Update is called once per frame
