@@ -55,6 +55,7 @@ public class CoinCombinationGenerator : MonoBehaviour
 
         return coins;
     } 
+    
     // Start is called before the first frame update
     void Start()
     {

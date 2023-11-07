@@ -8,7 +8,7 @@ public class CoinManager : MonoBehaviour
     [System.Serializable]
     public class GridCell
     {
-        public Vector3 position; //est ce que je ne mettrai pas un vector 2?
+        public Vector3 position; 
         public bool isOccupied;
     }
 
@@ -29,8 +29,8 @@ public class CoinManager : MonoBehaviour
         GameObject[] prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
         Debug.Log(prefabVariants.Length); //ca marche 
 
-        coinsList = GetComponent<CoinCombinationGenerator>();
         //ref a l'autre script
+        coinsList = GetComponent<CoinCombinationGenerator>();
 
         mainCamera = Camera.main;
         // Récupérer la taille de la fenetre de jeu
@@ -71,8 +71,15 @@ public class CoinManager : MonoBehaviour
             {
                 // Check if the prefab has a script component with a "worth" field
                 prefabCoin = prefab.GetComponent<Coin>();
-                if (prefab != null)
+                if (prefabCoin != null)
                 {
+                    // Debug log to confirm that the script component is found
+                    Debug.Log("Found Coin script on prefab: " + prefab.name);
+                    // Check the value of i
+                    Debug.Log("i value: " + i);
+                    Debug.Log("List of Coins : " + coinsList); // BUGG HERE : prints nothing meaning my list of coins is not generated
+
+                    
                     // Check if the "worth" field matches the target value
                     if (prefabCoin.worth == coinsList.listOfCoins[i])
                     {
