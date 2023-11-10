@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    private GridGenerator gridGenerator;
     private CoinCombinationGenerator coinGenerator;
+    private GridGenerator gridGenerator;
     private Coin prefabCoin;
     private GameObject coin; // mettre en privé et utiliser coin combo generator 
     private int randomCellX, randomCellY;
@@ -20,6 +20,10 @@ public class CoinManager : MonoBehaviour
         coinGenerator = GetComponent<CoinCombinationGenerator>();
         coinGenerator.ChooseRandomCombination();
 
+        //pour chaque prefab, respawn dans une case libre
+        gridGenerator = GetComponent<GridGenerator>();
+        gridGenerator.CreateGrid();
+
         for (int i = 0; i < coinGenerator.listOfCoins.Count; i++)
         {
             foreach (GameObject prefab in prefabVariants)
@@ -28,8 +32,6 @@ public class CoinManager : MonoBehaviour
                 prefabCoin = prefab.GetComponent<Coin>();
                 if (prefabCoin != null)
                 {
-                    Debug.Log("List of Coins : " + coinGenerator); // BUGG HERE : prints nothing meaning my list of coins is not generated
-                    
                     // Check if the "worth" field matches the target value
                     if (prefabCoin.worth == coinGenerator.listOfCoins[i])
                     {
@@ -41,9 +43,6 @@ public class CoinManager : MonoBehaviour
                 }
             }
 
-            //pour chaque prefab, respawn dans une case libre
-            gridGenerator = GetComponent<GridGenerator>();
-            gridGenerator.CreateGrid();
             do
             {
                 randomCellX = Random.Range(0, gridGenerator.gridColumns);

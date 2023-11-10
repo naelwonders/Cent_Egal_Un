@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GridGenerator : MonoBehaviour
 {
@@ -11,35 +12,39 @@ public class GridGenerator : MonoBehaviour
         public bool isOccupied;
     }
     [HideInInspector]
-    public GridCell[,] grid;
+    public GridCell[,] grid; //2D array of type GridCell (class)
     public int gridColumns = 4; 
     public int gridRows = 4;
 
     private Camera mainCamera; // Reference to your main camera
     // Start is called before the first frame update
+    private float gridWidth, gridHeight;
+    private float cellSizeX, cellSizeY;
+
+    private float randomWithinCellX, randomWithinCellY;
 
     public void CreateGrid() {
         mainCamera = Camera.main;
         
         // Récupérer la taille de la fenetre de jeu
-        float gridWidth = mainCamera.orthographicSize * mainCamera.aspect; //takes half the width of the screen
-        float gridHeight = mainCamera.orthographicSize * 1.6f;
+        gridWidth = mainCamera.orthographicSize * mainCamera.aspect; //takes half the width of the screen
+        gridHeight = mainCamera.orthographicSize * 1.6f;
 
         // Initialisation de la grille
         grid = new GridCell[gridColumns, gridRows]; // tableau de cellules
+        
         // Taille d'une cellule de la grille
-        float cellSizeX = gridWidth / gridColumns; 
-        float cellSizeY = gridHeight / gridRows;
+        cellSizeX = gridWidth / gridColumns; 
+        cellSizeY = gridHeight / gridRows;
 
         //generer la position random dans le grid et dans la cellule pour un effet semi random (double boucle)
-
         for (int x = 0; x < gridColumns; x++)
         {
             for (int y = 0; y < gridRows; y++)
             {
                 // Randomize where the sprite spawns within the cell tout en empachant de l'overlap avec les autres potentiel sprites a coté
-                float randomWithinCellX = Random.Range(cellSizeX / 2 - cellSizeX / 4, cellSizeX / 2 + cellSizeX / 4);
-                float randomWithinCellY = Random.Range(cellSizeY / 2 - cellSizeY / 4, cellSizeY / 2 + cellSizeY / 4);
+                randomWithinCellX = Random.Range(cellSizeX / 2 - cellSizeX / 4, cellSizeX / 2 + cellSizeX / 4);
+                randomWithinCellY = Random.Range(cellSizeY / 2 - cellSizeY / 4, cellSizeY / 2 + cellSizeY / 4);
 
                 grid[x, y] = new GridCell
                 {
