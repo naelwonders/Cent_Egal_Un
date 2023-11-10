@@ -1,63 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random; //to create an alias for random
-using System.Linq;
+using Random = UnityEngine.Random;
 
 public class CoinCombinationGenerator : MonoBehaviour
 {
-    public List<int> listOfCoins;
+    [HideInInspector]
+    public List<int> listOfCoins = new List<int>();
     
-     public List<int> GenerateRandomDistinctCoinCombination()
+    public void ChooseRandomCombination()
     {
-        int[] coinDenominations = { 1, 2, 5, 10, 20, 50, 100 };
-        List<int> combination = new List<int>();
-        System.Random random = new System.Random();
+        int[] combo1 = new int[] { 50, 20, 10, 10, 5, 2, 1, 1, 1};
+        int[] combo2 = new int[] { 20, 10, 10, 10, 10, 10, 10, 10, 10};
+        int[] combo3 = new int[] { 20, 20, 20, 10, 10, 5, 5, 5, 5};
 
-        // Randomly select 9 distinct coin denominations
-        List<int> availableDenominations = new List<int>(coinDenominations);
+        List<int[]> numbersList = new List<int[]> { combo1, combo2, combo3 };
 
-        for (int i = 0; i < 8; i++)
-        {
-            if (availableDenominations.Count == 0)
-            {
-                break; // If no more distinct denominations available, exit the loop
-            }
+        // Générez un indice aléatoire entre 0 et la taille de la liste moins un.
+        int randomIndex = Random.Range(0, numbersList.Count);
 
-            int index = random.Next(0, availableDenominations.Count);
-            int selectedDenomination = availableDenominations[index];
-            combination.Add(selectedDenomination);
-        }
+        // Accédez à l'élément aléatoire en utilisant l'indice généré.
+        int[] randomCombination = numbersList[randomIndex];
 
-        // Ensure that the combination sums up to 1 euro (100 cents)
-        int sum = combination.Sum();
-        int remainingValue = 100 - sum;
-        
-        if (availableDenominations.Contains(remainingValue))
-        {
-            combination.Add(remainingValue);
-        }
-        else
-        {
-            // If the remaining value is not a valid denomination, randomly select one
-            int index = random.Next(0, availableDenominations.Count);
-            int selectedDenomination = availableDenominations[index];
-            combination.Add(selectedDenomination);
-        }
+        listOfCoins.Clear();
 
-        return combination;
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        listOfCoins = GenerateRandomDistinctCoinCombination();
-        Debug.Log(listOfCoins);
+        //add the elements of my array into a list
+        listOfCoins.AddRange(randomCombination);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
