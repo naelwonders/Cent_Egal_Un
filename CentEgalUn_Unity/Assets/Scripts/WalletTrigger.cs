@@ -12,18 +12,22 @@ public class WalletTrigger : MonoBehaviour
     private Coin coin;
     private int droppedAmount = 0;
 
-    public bool amountToOne = false;
+    private Coin[] coins;
 
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
     void Start() {
         // Find all GameObjects with the specified tag
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
+        coins = GameObject.FindObjectsOfType<Coin>();
     }
 
     void Update() {
-        if (droppedAmount == 100) {
-            amountToOne = true;
+        if (droppedAmount >= 100) {
+            foreach (Coin coin in coins) {
+                Debug.Log(coin);
+                coin.gameObject.SetActive(false);
+            }
         }  
     }
     private void OnTriggerEnter2D(Collider2D other)

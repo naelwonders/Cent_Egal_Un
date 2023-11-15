@@ -62,16 +62,4 @@ public class CoinManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if we have one euro on the wallet, destroy the coins
-        if (walletTrigger.amountToOne) {
-            
-            //instantiate, liste de gameobjects
-            //dans la fonction coins, find objects with type coin, instance des scripts --> Destroy(coin.gameObject)
-            Destroy(GameObject.FindObjectOfType<WalletTrigger>());
-            
-        }
-    }
 }

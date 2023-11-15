@@ -13,6 +13,7 @@ public class Coin : MonoBehaviour
     [HideInInspector]
     public bool onWallet = false;
 
+
     void Start()
     {
         // Obtenir le composant Collider attaché à cet objet

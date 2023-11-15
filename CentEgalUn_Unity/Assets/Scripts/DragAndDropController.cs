@@ -8,7 +8,6 @@ public class DragAndDropController : MonoBehaviour
     public bool isDraggable = true;
     public bool isDragged = false;
     private Vector3 originalPosition;
-
     private Coin coin;
 
     void Start()
