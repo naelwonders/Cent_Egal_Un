@@ -2,40 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
+using TMPro;
 
 public class WalletTrigger : MonoBehaviour
 {
+    private GameObject uiElement;
+    private TMP_Text resultText; // Référence à l'élément Text de l'UI
+    private string uiTag = "Amount";
     private Coin coin;
+    private int droppedAmount = 0;
 
-    public string uiTag = "Amount";
+    public bool amountToOne = false;
 
-    [HideInInspector]
-    public int droppedAmount = 0;
-    private GameObject uiElements;
-    public Text resultText; // Référence à l'élément Text de l'UI
-
-    void Start()
-    {
+    //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
+    void Start() {
+        // Find all GameObjects with the specified tag
+        uiElement = GameObject.FindGameObjectWithTag(uiTag);
+        resultText = uiElement.GetComponent<TMP_Text>();
     }
 
-    
-    //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
-    private void OnTriggerStay2D(Collider2D other)
+    void Update() {
+        if (droppedAmount == 100) {
+            amountToOne = true;
+        }  
+    }
+    private void OnTriggerEnter2D(Collider2D other)
     {
-    // Find all GameObjects with the specified tag
-        uiElements = GameObject.FindGameObjectWithTag(uiTag);
-        resultText = uiElements.GetComponent<Text>();
-        // This method is called when another object enters the trigger zone.
-
         coin = other.gameObject.GetComponent<Coin>();
-        // GameObject[] foundObjects = GameObject.FindObjectsWithTag("YourTag");
-        // resultText = GameObject.FindObjectsWithTag("Amount").GetComponent<Text>();
-
-        //BUGG: ca additionne le montant a chaque frame --> mettre de code dans un if
+        //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
+        coin.onWallet = true;
         droppedAmount += coin.worth;
-        Debug.Log("resultText: " + resultText);
-        resultText.text = "Montant : " + droppedAmount;
-        
+        resultText.text = "Montant : " + droppedAmount.ToString();
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        coin = other.gameObject.GetComponent<Coin>();
+        //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
+        coin.onWallet = false;
+        droppedAmount -= coin.worth;
+        resultText.text = "Montant : " + droppedAmount.ToString();
     }
 }
 

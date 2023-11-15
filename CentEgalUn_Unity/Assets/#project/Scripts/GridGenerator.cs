@@ -28,7 +28,7 @@ public class GridGenerator : MonoBehaviour
         
         // Récupérer la taille de la fenetre de jeu
         gridWidth = mainCamera.orthographicSize * mainCamera.aspect; //takes half the width of the screen
-        gridHeight = mainCamera.orthographicSize * 1.6f;
+        gridHeight = mainCamera.orthographicSize * 1.4f;
 
         // Initialisation de la grille
         grid = new GridCell[gridColumns, gridRows]; // tableau de cellules

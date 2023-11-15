@@ -10,11 +10,15 @@ public class CoinManager : MonoBehaviour
     private GameObject coin; // mettre en privé et utiliser coin combo generator 
     private int randomCellX, randomCellY;
 
+    private WalletTrigger walletTrigger;
+
+    private GameObject[] prefabVariants;
+
     void Start()
     {
-        GameObject[] prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
-        // mes préfabs existent et son reconnues 
-        Debug.Log("Number of prefab variants : " + prefabVariants.Length);
+        prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
+        
+        walletTrigger = GameObject.FindObjectOfType<WalletTrigger>(); //ca cherche sur le meme game object
 
         //ref a l'autre script
         coinGenerator = GetComponent<CoinCombinationGenerator>();
@@ -37,8 +41,6 @@ public class CoinManager : MonoBehaviour
                     {
                         //coin is the GameObject I want to instantiate
                         coin = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
-                        // You found the matching prefab variant
-                        Debug.Log("Found prefab variant with worth = " + coinGenerator.listOfCoins[i] + ": " + prefab.name);
                     }
                 }
             }
@@ -60,10 +62,16 @@ public class CoinManager : MonoBehaviour
         
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        
+        //if we have one euro on the wallet, destroy the coins
+        if (walletTrigger.amountToOne) {
+            
+            //instantiate, liste de gameobjects
+            //dans la fonction coins, find objects with type coin, instance des scripts --> Destroy(coin.gameObject)
+            Destroy(GameObject.FindObjectOfType<WalletTrigger>());
+            
+        }
     }
 }
