@@ -11,8 +11,9 @@ public class WalletTrigger : MonoBehaviour
     private string uiTag = "Amount";
     private Coin coin;
     private int droppedAmount = 0;
+    private GameObject oneEuro;
 
-    private Coin[] coins;
+    [SerializeField] private Coin[] coins;
 
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
     void Start() {
@@ -20,14 +21,18 @@ public class WalletTrigger : MonoBehaviour
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
         coins = GameObject.FindObjectsOfType<Coin>();
+        oneEuro = GameObject.FindGameObjectWithTag("Finish");
     }
 
     void Update() {
+        Debug.Log(droppedAmount);
+        //add a delay or deactivate them after the dissappearing rendering
         if (droppedAmount >= 100) {
             foreach (Coin coin in coins) {
                 Debug.Log(coin);
                 coin.gameObject.SetActive(false);
             }
+            oneEuro.gameObject.SetActive(true);
         }  
     }
     private void OnTriggerEnter2D(Collider2D other)

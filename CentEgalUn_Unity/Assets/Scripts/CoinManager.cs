@@ -13,11 +13,15 @@ public class CoinManager : MonoBehaviour
     private WalletTrigger walletTrigger;
 
     private GameObject[] prefabVariants;
+    //private GameObject oneEuro;
 
     void Start()
     {
         prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
         
+        //ajouter un euro et le desactiver?
+        // oneEuro = GameObject.FindGameObjectWithTag("Finish");
+        // oneEuro.gameObject.SetActive(true);
         walletTrigger = GameObject.FindObjectOfType<WalletTrigger>(); //ca cherche sur le meme game object
 
         //ref a l'autre script
