@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 using TMPro;
 
 public class WalletTrigger : MonoBehaviour
@@ -14,9 +14,12 @@ public class WalletTrigger : MonoBehaviour
     private GameObject oneEuro;
 
     [SerializeField] private Coin[] coins;
+    
+    [HideInInspector] public int numberOfCoinsOnWallet = 0;
 
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
-    void Start() {
+    void Start()
+    {
         // Find all GameObjects with the specified tag
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
@@ -25,34 +28,68 @@ public class WalletTrigger : MonoBehaviour
         oneEuro.gameObject.SetActive(false);
     }
 
-    void Update() {
+    void Update()
+    {
+        DisplayDroppedAmount(droppedAmount);
         //add a delay or deactivate them after the dissappearing rendering
-        if (droppedAmount >= 100) {
-            foreach (Coin coin in coins) {
-                coin.gameObject.SetActive(false);
+        if (coin != null && coin.GetComponent<DragAndDropController>().isDragged == false)
+        {
+            coin = null;
+            if (droppedAmount >= 100)
+            {
+                foreach (Coin coin in coins)
+                {
+                    coin.gameObject.SetActive(false);
+                }
+                oneEuro.gameObject.SetActive(true);
             }
-            oneEuro.gameObject.SetActive(true);
-        }  
+
+        }
+
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         coin = other.gameObject.GetComponent<Coin>();
         //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
         coin.onWallet = true;
         droppedAmount += coin.worth;
-        resultText.text = "Montant : " + droppedAmount.ToString();
+        numberOfCoinsOnWallet += 1;
+        //DisplayDroppedAmount(droppedAmount); //
 
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        coin = other.gameObject.GetComponent<Coin>();
-        //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
+        if (coin != null) {
+         //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
         coin.onWallet = false;
         droppedAmount -= coin.worth;
-        resultText.text = "Montant : " + droppedAmount.ToString();
+        numberOfCoinsOnWallet -= 1;
+        //DisplayDroppedAmount(droppedAmount);
+        }
+        coin = null;
     }
+
+    private void DisplayDroppedAmount(int amount) 
+    {
+        if (amount < 10) 
+        {
+            resultText.text = "Montant : 0€0" + (amount).ToString();
+
+        }
+        else if (amount > 99)
+        {
+            resultText.text = "Montant : 1€00";
+        } 
+        else if (amount >= 10) 
+        {
+            resultText.text = "Montant : 0€" + (amount).ToString();
+        }
+        
+    }
+
 }
+
 
 

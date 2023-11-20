@@ -6,14 +6,27 @@ public class DragAndDropController : MonoBehaviour
 {
     
     public bool isDraggable = true;
-    public bool isDragged = false;
+    public bool isDragged = false; // is dropped
     private Vector3 originalPosition;
     private Coin coin;
+
+    private Renderer renderer;
+
+
+    private int layerWhenDragging;
+
+    private WalletTrigger walletTrigger;
+
 
     void Start()
     {
         originalPosition = transform.position;
         coin = GetComponent<Coin>();
+        renderer = GetComponent<Renderer>();
+        walletTrigger = GameObject.FindObjectOfType<WalletTrigger>();
+        layerWhenDragging = 9;
+    
+        
     }
 
     // Update is called once per frame
@@ -22,15 +35,20 @@ public class DragAndDropController : MonoBehaviour
         
         if (isDragged) {
             transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition); //we cast to vector to loose the z axis otherwise the drag and drop does not work
+            renderer.sortingOrder = layerWhenDragging;
         }
         else {
             //prevent the drag and drop after dropping the coin on the wallet: BUGG HERE
             if (coin.onWallet) {
-                isDraggable = false;
+                if (isDraggable) {
+                    isDraggable = false;
+                    renderer.sortingOrder = walletTrigger.numberOfCoinsOnWallet;
+                }
             }
             //if coin is dropped outside the wallet, bring it to its original position
             else {
                 transform.position = originalPosition;
+                renderer.sortingOrder = 0;
             }
         }
     }

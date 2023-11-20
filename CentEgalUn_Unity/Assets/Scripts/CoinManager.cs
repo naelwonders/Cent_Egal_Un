@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class CoinManager : MonoBehaviour
 {
     private CoinCombinationGenerator coinGenerator;
@@ -13,7 +14,7 @@ public class CoinManager : MonoBehaviour
     private WalletTrigger walletTrigger;
 
     private GameObject[] prefabVariants;
-    //private GameObject oneEuro;
+    public RuntimeAnimatorController animatorController;
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class CoinManager : MonoBehaviour
                     {
                         //coin is the GameObject I want to instantiate
                         coin = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
+                        
                     }
                 }
             }
