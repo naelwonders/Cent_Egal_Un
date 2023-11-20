@@ -22,19 +22,19 @@ public class WalletTrigger : MonoBehaviour
         resultText = uiElement.GetComponent<TMP_Text>();
         coins = GameObject.FindObjectsOfType<Coin>();
         oneEuro = GameObject.FindGameObjectWithTag("Finish");
+        oneEuro.gameObject.SetActive(false);
     }
 
     void Update() {
-        Debug.Log(droppedAmount);
         //add a delay or deactivate them after the dissappearing rendering
         if (droppedAmount >= 100) {
             foreach (Coin coin in coins) {
-                Debug.Log(coin);
                 coin.gameObject.SetActive(false);
             }
             oneEuro.gameObject.SetActive(true);
         }  
     }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         coin = other.gameObject.GetComponent<Coin>();

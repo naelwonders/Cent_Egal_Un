@@ -17,6 +17,7 @@ public class CoinManager : MonoBehaviour
 
     void Start()
     {
+        //store all the coins in an array
         prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
         
         //ajouter un euro et le desactiver?
@@ -36,7 +37,7 @@ public class CoinManager : MonoBehaviour
         {
             foreach (GameObject prefab in prefabVariants)
             {
-                // Check if the prefab has a script component with a "worth" field
+                // Check if the prefab has a script component with a "worth" field 
                 prefabCoin = prefab.GetComponent<Coin>();
                 if (prefabCoin != null)
                 {
