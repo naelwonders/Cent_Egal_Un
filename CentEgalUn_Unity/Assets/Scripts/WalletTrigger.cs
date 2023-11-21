@@ -10,6 +10,7 @@ public class WalletTrigger : MonoBehaviour
     private TMP_Text resultText; // Référence à l'élément Text de l'UI
     private string uiTag = "Amount";
     private Coin coin;
+
     private int droppedAmount = 0;
     private GameObject oneEuro;
 
@@ -55,7 +56,6 @@ public class WalletTrigger : MonoBehaviour
         coin.onWallet = true;
         droppedAmount += coin.worth;
         numberOfCoinsOnWallet += 1;
-        //DisplayDroppedAmount(droppedAmount); //
 
     }
 

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class CoinManager : MonoBehaviour
 {
     private CoinCombinationGenerator coinGenerator;
@@ -14,11 +13,11 @@ public class CoinManager : MonoBehaviour
     private WalletTrigger walletTrigger;
 
     private GameObject[] prefabVariants;
-    public RuntimeAnimatorController animatorController;
+    
 
     void Start()
     {
-        //store all the coins in an array
+        //store all the coins prefebs in an array
         prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
         
         //ajouter un euro et le desactiver?
@@ -47,7 +46,6 @@ public class CoinManager : MonoBehaviour
                     {
                         //coin is the GameObject I want to instantiate
                         coin = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
-                        
                     }
                 }
             }
@@ -65,6 +63,7 @@ public class CoinManager : MonoBehaviour
 
             // Marquer la case comme occupée
             gridGenerator.grid[randomCellX, randomCellY].isOccupied = true;
+
         }
         
     }

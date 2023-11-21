@@ -9,7 +9,6 @@ public class DragAndDropController : MonoBehaviour
     public bool isDragged = false; // is dropped
     private Vector3 originalPosition;
     private Coin coin;
-
     private Renderer renderer;
 
 
@@ -25,8 +24,7 @@ public class DragAndDropController : MonoBehaviour
         renderer = GetComponent<Renderer>();
         walletTrigger = GameObject.FindObjectOfType<WalletTrigger>();
         layerWhenDragging = 9;
-    
-        
+
     }
 
     // Update is called once per frame

@@ -6,7 +6,8 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int worth;
-    public Sprite image;
+    public Sprite headsImage;
+
     private Vector3 objectSize;
     private CircleCollider2D collider;
     

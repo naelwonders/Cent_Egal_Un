@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: worth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6815551530967948151, guid: 001ef20f1c1ab464e9ac0e65742114fb, type: 3}
+      propertyPath: headsImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 83be7be557ffdf24d87adaca8803b3e5, type: 3}
     - target: {fileID: 7748738231945024587, guid: 001ef20f1c1ab464e9ac0e65742114fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -84,6 +88,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 5.16
       objectReference: {fileID: 0}
+    - target: {fileID: 8098283530214870050, guid: 001ef20f1c1ab464e9ac0e65742114fb, type: 3}
+      propertyPath: tailColor
+      value: 
+      objectReference: {fileID: 21300000, guid: a7745a2c83109114b89f77baadd03eba, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
