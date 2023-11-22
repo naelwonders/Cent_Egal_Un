@@ -10,12 +10,15 @@ public class SpinningCoins : MonoBehaviour
     public Animator animator;
 
     private float randomTimeInterval;
+
+    private DragAndDropController dragDrop;
     
 
     void Start()
     {
         heads = GetComponent<Coin>();
         animator = GetComponent<Animator>();
+        dragDrop = GetComponent<DragAndDropController>();
         StartCoroutine(PlayAnimationAtRandomIntervals());
     }
 
@@ -46,11 +49,17 @@ public class SpinningCoins : MonoBehaviour
     //     }
     // }
 
+    void Update() {
+        animator.SetBool("playerInteract", dragDrop.isDragged && !dragDrop.isDraggable);
+    }
+
     public IEnumerator PlayAnimationAtRandomIntervals()
     {
-        while(true) {
-            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
-                randomTimeInterval = Random.Range(0.2f, 15f);
+        while(true) 
+        {
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && dragDrop.isDraggable && !dragDrop.isDragged) 
+            {
+                randomTimeInterval = Random.Range(0.2f, 10f);
                 yield return new WaitForSeconds(randomTimeInterval);
                 animator.SetTrigger("turn");
             }
@@ -58,3 +67,4 @@ public class SpinningCoins : MonoBehaviour
         }
     }
 }
+
