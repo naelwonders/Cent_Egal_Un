@@ -23,41 +23,24 @@ public class SpinningCoins : MonoBehaviour
     }
 
     public void Switch() {
-
         GetComponent<SpriteRenderer>().sprite = tailColor;
-
     }
 
     public void UnSwitch() {
         GetComponent<SpriteRenderer>().sprite = heads.headsImage;
     }
 
-
-    // // Start the coroutine
-    // public void StartCoroutineA()
-    // {
-    //     myCoroutine = StartCoroutine(PlayAnimationAtRandomIntervals());
-    // }
-
-    // // Stop the coroutine
-    // public void StopCoroutineA()
-    // {
-    //     if (myCoroutine != null)
-    //     {
-    //         StopCoroutine(myCoroutine);
-    //         myCoroutine = null;
-    //     }
-    // }
-
-    void Update() {
-        animator.SetBool("playerInteract", dragDrop.isDragged && !dragDrop.isDraggable);
+    void Update() 
+    {
+        //quand le player interagit avec le coin, la coin ne spin plus
+        animator.SetBool("playerInteract", dragDrop.isDragged || !dragDrop.isDraggable);
     }
 
     public IEnumerator PlayAnimationAtRandomIntervals()
     {
         while(true) 
         {
-            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && dragDrop.isDraggable && !dragDrop.isDragged) 
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) 
             {
                 randomTimeInterval = Random.Range(0.2f, 10f);
                 yield return new WaitForSeconds(randomTimeInterval);
