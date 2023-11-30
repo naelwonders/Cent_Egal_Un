@@ -41,21 +41,25 @@ public class CoinManager : MonoBehaviour
             {
                 if (i < coinGenerator.listOfCoins.Count) 
                 {
-                prefabCoin = prefab.GetComponent<Coin>();
-                if (prefabCoin != null)
-                {
-                    // Check if the "worth" field matches the target value
-                    if (prefabCoin.worth == coinGenerator.listOfCoins[i])
+                    prefabCoin = prefab.GetComponent<Coin>();
+                    if (prefabCoin != null)
                     {
-                        //coin is the GameObject I want to instantiate
-                        prefabToSpanwn = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
+                        // Check if the "worth" field matches the target value
+                        if (prefabCoin.worth == coinGenerator.listOfCoins[i])
+                        {
+                            //coin is the GameObject I want to instantiate
+                            prefabToSpanwn = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
+                        }
                     }
-                }
 
                 }
-                if (prefab.tag == "Apple")
+                else 
                 {
-                    prefabToSpanwn = prefab;
+
+                    if (prefab.tag == "Apple")
+                    {
+                        prefabToSpanwn = prefab;
+                    }
                 }
                 
             }

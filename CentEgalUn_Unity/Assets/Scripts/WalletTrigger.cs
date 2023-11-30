@@ -57,16 +57,18 @@ public class WalletTrigger : MonoBehaviour
     {
         coin = other.gameObject.GetComponent<Coin>();
         //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
+        if (coin != null) 
+        {
         coin.onWallet = true;
         droppedAmount += coin.worth;
         numberOfCoinsOnWallet += 1;
-
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (coin != null) {
-         //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
+        if (coin != null) 
+        {
         coin.onWallet = false;
         droppedAmount -= coin.worth;
         numberOfCoinsOnWallet -= 1;
