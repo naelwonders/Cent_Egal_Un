@@ -123,6 +123,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &21008580
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 867795577550797936}
+    m_Modifications:
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.42857143
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42857143
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.542857
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390718830975339834, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+      propertyPath: m_Name
+      value: 2c
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
 --- !u!1 &134904501
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccee224af88f34439123d18d1249778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameComplete: 0
   coins: []
   numberOfCoinsOnWallet: 0
 --- !u!61 &170573952
@@ -1127,7 +1193,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.5
+  m_fontSize: 27.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1177,6 +1243,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900786055}
   m_CullTransparentMesh: 1
+--- !u!4 &1082710178 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1663428265390395283, guid: 85b40a6613b1cc243b151920f22a5be1, type: 3}
+  m_PrefabInstance: {fileID: 21008580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1150962645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2126,7 @@ Transform:
   - {fileID: 1737064779}
   - {fileID: 1789023342}
   - {fileID: 2035106850}
+  - {fileID: 1082710178}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8451751585484828776

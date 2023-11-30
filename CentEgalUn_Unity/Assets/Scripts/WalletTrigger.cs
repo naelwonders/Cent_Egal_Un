@@ -12,6 +12,8 @@ public class WalletTrigger : MonoBehaviour
     private Coin coin;
 
     private int droppedAmount = 0;
+
+    public bool gameComplete = false;
     private GameObject oneEuro;
 
     [SerializeField] private Coin[] coins;
@@ -43,10 +45,12 @@ public class WalletTrigger : MonoBehaviour
                     coin.gameObject.SetActive(false);
                 }
                 oneEuro.gameObject.SetActive(true);
+
+                //ADD SOME WINNING ANIMATION LOGIC HERE (in a function probably)
+
+                gameComplete = true;
             }
-
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -66,7 +70,6 @@ public class WalletTrigger : MonoBehaviour
         coin.onWallet = false;
         droppedAmount -= coin.worth;
         numberOfCoinsOnWallet -= 1;
-        //DisplayDroppedAmount(droppedAmount);
         }
         coin = null;
     }

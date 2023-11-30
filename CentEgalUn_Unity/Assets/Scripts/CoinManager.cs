@@ -7,23 +7,19 @@ public class CoinManager : MonoBehaviour
     private CoinCombinationGenerator coinGenerator;
     private GridGenerator gridGenerator;
     private Coin prefabCoin;
-    private GameObject coin; // mettre en privé et utiliser coin combo generator 
+    private GameObject prefabToSpanwn; // mettre en privé et utiliser coin combo generator 
     private int randomCellX, randomCellY;
 
-    private WalletTrigger walletTrigger;
-
     private GameObject[] prefabVariants;
+
+    public Sprite prefabAppleSprite;
+    public int numberOfApples = 3;
     
 
     void Start()
     {
         //store all the coins prefebs in an array
         prefabVariants = Resources.LoadAll<GameObject>("Prefabs");
-        
-        //ajouter un euro et le desactiver?
-        // oneEuro = GameObject.FindGameObjectWithTag("Finish");
-        // oneEuro.gameObject.SetActive(true);
-        walletTrigger = GameObject.FindObjectOfType<WalletTrigger>(); //ca cherche sur le meme game object
 
         //ref a l'autre script
         coinGenerator = GetComponent<CoinCombinationGenerator>();
@@ -33,11 +29,18 @@ public class CoinManager : MonoBehaviour
         gridGenerator = GetComponent<GridGenerator>();
         gridGenerator.CreateGrid();
 
-        for (int i = 0; i < coinGenerator.listOfCoins.Count; i++)
+        SpawnTheCoins();        
+    }
+
+    private void SpawnTheCoins()
+    {
+        for (int i = 0; i < coinGenerator.listOfCoins.Count + numberOfApples; i++)
         {
+            // Check if the prefab has a script component with a "worth" field 
             foreach (GameObject prefab in prefabVariants)
             {
-                // Check if the prefab has a script component with a "worth" field 
+                if (i < coinGenerator.listOfCoins.Count) 
+                {
                 prefabCoin = prefab.GetComponent<Coin>();
                 if (prefabCoin != null)
                 {
@@ -45,11 +48,19 @@ public class CoinManager : MonoBehaviour
                     if (prefabCoin.worth == coinGenerator.listOfCoins[i])
                     {
                         //coin is the GameObject I want to instantiate
-                        coin = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
+                        prefabToSpanwn = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
                     }
                 }
+
+                }
+                if (prefab.tag == "Apple")
+                {
+                    prefabToSpanwn = prefab;
+                }
+                
             }
 
+            //Choose an inoccupied cell
             do
             {
                 randomCellX = Random.Range(0, gridGenerator.gridColumns);
@@ -59,13 +70,12 @@ public class CoinManager : MonoBehaviour
 
             // Positionner la pièce d'euro au centre de la case
             Vector3 spawnPosition = gridGenerator.grid[randomCellX, randomCellY].position;
-            Instantiate(coin, spawnPosition, Quaternion.identity);
+            Instantiate(prefabToSpanwn, spawnPosition, Quaternion.identity);
 
             // Marquer la case comme occupée
             gridGenerator.grid[randomCellX, randomCellY].isOccupied = true;
 
         }
-        
     }
 
 }

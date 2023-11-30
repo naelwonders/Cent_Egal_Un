@@ -7,7 +7,7 @@ using UnityEngine;
 public class DataPersistenceManager : MonoBehaviour
 {
     private GameData gameData;
-    //this is a singleton
+    //this is a singleton: we can access it publically but only set it privately within this class
     public static DataPersistenceManager instance {get; private set;}
 
     private void Awake()
@@ -19,11 +19,11 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
     }
 
-    //6min 25 for how use these methods in other scripts (https://www.youtube.com/watch?v=aUi9aijvpgs&t=103s)
-    private void Start()
-    {
-        LoadGame();
-    }
+    //this is in my scene manager in the start method
+    // private void Start()
+    // {
+    //     LoadGame();
+    // }
 
     public void NewGame()
     {

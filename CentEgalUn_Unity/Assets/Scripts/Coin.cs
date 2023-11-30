@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
     public Sprite headsImage;
 
     private Vector3 objectSize;
-    private CircleCollider2D collider;
+    private CircleCollider2D colision; //not allowed to use collider cos it crashes another collider
     
     [HideInInspector]
     public bool onWallet = false;
@@ -18,7 +18,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         // Obtenir le composant Collider attaché à cet objet
-        collider = GetComponent<CircleCollider2D>();
+        colision = GetComponent<CircleCollider2D>();
         
     }
 
