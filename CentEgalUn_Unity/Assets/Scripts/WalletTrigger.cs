@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WalletTrigger : MonoBehaviour
+public class WalletTrigger : MonoBehaviour, IDataPersistence
 {
     private GameObject uiElement;
     private TMP_Text resultText; // Référence à l'élément Text de l'UI
@@ -20,6 +20,18 @@ public class WalletTrigger : MonoBehaviour
     
     [HideInInspector] public int numberOfCoinsOnWallet = 0;
 
+    private ParticleSystem particle;
+
+    
+    public void LoadData(GameData data)
+    {
+        //get how many times the player completed game <add game number> in the past HOW??
+    }
+    public void SaveData(ref GameData data)
+    {
+        //if game completed INCREMENT tHE NUMBER OF TIMES the player completed game <add game number> HOW??
+    }
+    
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
     void Start()
     {
@@ -29,6 +41,10 @@ public class WalletTrigger : MonoBehaviour
         coins = GameObject.FindObjectsOfType<Coin>();
         oneEuro = GameObject.FindGameObjectWithTag("Finish");
         oneEuro.gameObject.SetActive(false);
+
+        particle = GetComponent<ParticleSystem>();
+        particle.Stop(); 
+    
     }
 
     void Update()
@@ -45,6 +61,7 @@ public class WalletTrigger : MonoBehaviour
                     coin.gameObject.SetActive(false);
                 }
                 oneEuro.gameObject.SetActive(true);
+                particle.Play();
 
                 //ADD SOME WINNING ANIMATION LOGIC HERE (in a function probably)
 

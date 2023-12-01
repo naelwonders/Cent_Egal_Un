@@ -289,7 +289,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1997612127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.61296695}
+  m_AnchorMin: {x: 0, y: 0.612967}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -796,9 +796,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 275669829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fe05f3ef883e64b8fde5bf096aed48, type: 3}
+  m_Script: {fileID: 11500000, guid: 154f323aa99c4c44694ef228a6130f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfPlayer: {fileID: 0}
 --- !u!1 &313395026
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,8 +882,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 132916241}
   m_HandleRect: {fileID: 132916240}
   m_Direction: 2
-  m_Value: 1.0000008
-  m_Size: 0.38703302
+  m_Value: 1.0000007
+  m_Size: 0.38703296
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4168,7 +4169,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1994326697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 275669831}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: AddNameToList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1994326697
 MonoBehaviour:
   m_ObjectHideFlags: 0
