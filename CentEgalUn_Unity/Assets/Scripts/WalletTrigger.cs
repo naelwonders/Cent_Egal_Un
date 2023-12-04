@@ -22,11 +22,13 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
     private ParticleSystem particle;
 
+    public AudioSource gameFinishedSound;
     
     public void LoadData(GameData data)
     {
         //get how many times the player completed game <add game number> in the past HOW??
     }
+
     public void SaveData(ref GameData data)
     {
         //if game completed INCREMENT tHE NUMBER OF TIMES the player completed game <add game number> HOW??
@@ -61,11 +63,10 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
                     coin.gameObject.SetActive(false);
                 }
                 oneEuro.gameObject.SetActive(true);
-                particle.Play();
 
-                //ADD SOME WINNING ANIMATION LOGIC HERE (in a function probably)
-
-                gameComplete = true;
+                //ADD SOME WINNING JUICINESS
+                particle.Play(); 
+                gameFinishedSound.Play();
             }
         }
     }
@@ -76,9 +77,9 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
         //GAMEPLAY : seulement compter les point quand le coin is dropped in the wallet
         if (coin != null) 
         {
-        coin.onWallet = true;
-        droppedAmount += coin.worth;
-        numberOfCoinsOnWallet += 1;
+            coin.onWallet = true;
+            droppedAmount += coin.worth;
+            numberOfCoinsOnWallet += 1;
         }
     }
 
@@ -86,9 +87,9 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
     {
         if (coin != null) 
         {
-        coin.onWallet = false;
-        droppedAmount -= coin.worth;
-        numberOfCoinsOnWallet -= 1;
+            coin.onWallet = false;
+            droppedAmount -= coin.worth;
+            numberOfCoinsOnWallet -= 1;
         }
         coin = null;
     }

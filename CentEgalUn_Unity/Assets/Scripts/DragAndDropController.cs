@@ -16,11 +16,16 @@ public class DragAndDropController : MonoBehaviour
 
     private WalletTrigger walletTrigger;
 
+    //we cannot use get component for the audio because we will have many audio effects
+    public AudioSource isDraggedSound;
+    
+    public AudioSource isDroppedSound;
+    
 
     void Start()
     {
         originalPosition = transform.position;
-        coin = GetComponent<Coin>();
+        coin = GetComponent<Coin>(); //null if apple
         renderer2D = GetComponent<Renderer>();
         walletTrigger = GameObject.FindObjectOfType<WalletTrigger>();
         layerWhenDragging = 9;
@@ -30,7 +35,6 @@ public class DragAndDropController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (isDragged) 
         {
             transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition); //we cast to vector to loose the z axis otherwise the drag and drop does not work
@@ -38,10 +42,9 @@ public class DragAndDropController : MonoBehaviour
         }
         else 
         {
-            //prevent the drag and drop after dropping the coin on the wallet: BUGG HERE
-            if (coin != null)
+            if (coin != null) // si c'est un coin et qu'il est sur le wallet vs pas sur le wallet
             {
-                if (coin.onWallet) 
+                if (coin.onWallet) // on the wallet
                 {
                     if (isDraggable) 
                     {
@@ -49,9 +52,14 @@ public class DragAndDropController : MonoBehaviour
                         renderer2D.sortingOrder = walletTrigger.numberOfCoinsOnWallet;
                     }
                 }
+                //if coin is dropped outside the wallet, bring it to its original position
+                else
+                {
+                    transform.position = originalPosition;
+                }
            
             }
-            //if coin is dropped outside the wallet, bring it to its original position
+            //if not a coin : nothing special happens when dropped
             else 
             {
                 transform.position = originalPosition;
@@ -63,6 +71,7 @@ public class DragAndDropController : MonoBehaviour
     {
         if (isDraggable && Input.GetMouseButtonDown(0)) //int of the button pressed, here the left one
         {
+            isDraggedSound.Play();
             isDragged = true;
         }
     }
@@ -70,5 +79,13 @@ public class DragAndDropController : MonoBehaviour
     private void OnMouseUp()
     {
         isDragged = false;
+
+        if (coin != null)
+        {
+            if (coin.onWallet)
+            {
+                isDroppedSound.Play();
+            }
+        }
     }
 }

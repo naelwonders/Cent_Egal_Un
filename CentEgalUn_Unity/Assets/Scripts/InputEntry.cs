@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class InputEntry : MonoBehaviour
-{
+[Serializable] public class InputEntry 
+{   
+    public string nameOfPlayer;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    //CONTSTRUCTOR
+    public InputEntry (string name)
     {
-        
+        nameOfPlayer = name;
     }
 }

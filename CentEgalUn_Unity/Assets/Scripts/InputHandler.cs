@@ -9,13 +9,17 @@ using UnityEngine.UI;
 //j'arrive pas a coller l'input field dans la champs publique d'un script (je sais pas pourquoi)
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] InputField nameOfPlayer;
+    [SerializeField] private InputField nameInput;
+    [SerializeField] private string filename;
 
-    List<string> entries = new List<string> ();
+    List<InputEntry> entries = new List<InputEntry> ();
 
     public void AddNameToList ()
     {
-        entries.Add(nameOfPlayer.text);
-        nameOfPlayer.text = "";
+        //BUGG nullreferenceexception HERE 
+        entries.Add(new InputEntry (nameInput.text));
+        nameInput.text = "";
+        
+        FileHandler.SaveToJSON<InputEntry>(entries, filename);
     }
 }
