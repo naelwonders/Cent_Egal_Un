@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 
 public static class FileHandler
 {
@@ -13,9 +14,15 @@ public static class FileHandler
         WriteFile(GetPath(filename), content);
 
     }
-    public static void ReadFromJSON()
+    public static List<T> ReadFromJSON<T>(string filename)
     {
-        
+        string content = ReadFile(GetPath(filename));
+        if (string.IsNullOrEmpty(content) || content == "{}") 
+        {
+            return new List<T>();
+        }
+        List<T> res = JsonHelper.FromJson<T>(content).ToList();
+        return res;
     }
 
     private static string GetPath(string filename)
@@ -33,8 +40,16 @@ public static class FileHandler
         }
     }
 
-    private static string ReadFile() 
+    private static string ReadFile(string path) 
     {
+        if (File.Exists(path))
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string content = reader.ReadToEnd();
+                return content;
+            }
+        }
         return "";
     }
 }
