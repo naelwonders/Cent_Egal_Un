@@ -11,35 +11,56 @@ public class PlayerDataHandler : MonoBehaviour
 {
     private string filename = "names.json";
 
-    List<InputEntry> entries = new List<InputEntry> ();
+    List<InputEntry> playerDataList = new List<InputEntry> ();
+    [SerializeField] int maxEntries =  5;
 
-    private void UpdateAllEntries ()
+    public delegate void OnPlayerDataListChanged (List<InputEntry> list);
+    public static event OnPlayerDataListChanged onplayerdataListChanged;
+
+    private void Start()
     {
-        entries = FileHandler.ReadFromJSON<InputEntry>(filename);
+        LoadPlayerData();
     }
     
-
-    public void UpdateCurrentScoreGame1 (int currentEntryIndex)
+    private void LoadPlayerData()
     {
-        entries[currentEntryIndex].playCountGame1 += 1;
-        
-        FileHandler.SaveToJSON<InputEntry>(entries, filename);
+        playerDataList = FileHandler.ReadFromJSON<InputEntry> (filename);
 
+        //when extra entries are added, other ones are deleted forever (change that later)
+        while (playerDataList.Count > maxEntries)
+        {
+            playerDataList.RemoveAt(maxEntries);
+        }
+
+        if (onplayerdataListChanged != null)
+        {
+            onplayerdataListChanged.Invoke(playerDataList);
+        }
     }
 
-    public void UpdateCurrentScoreGame2 (int currentEntryIndex)
+    private void SavePlayerData()
     {
-        entries[currentEntryIndex].playCountGame2 += 1;
-        
-        FileHandler.SaveToJSON<InputEntry>(entries, filename);
-
+        FileHandler.SaveToJSON<InputEntry>(playerDataList, filename);
     }
 
-    public void UpdateCurrentScoreGame3 (int currentEntryIndex)
-    {
-        entries[currentEntryIndex].playCountGame3 += 1;
-        
-        FileHandler.SaveToJSON<InputEntry>(entries, filename);
+    // public void UpdateCurrentScoreGame1 (int currentEntryIndex)
+    // {
+    //     playerDataList[currentEntryIndex].playCountGame1 += 1;
+    //     SavePlayerData();
 
-    }
+    // }
+
+    // public void UpdateCurrentScoreGame2 (int currentEntryIndex)
+    // {
+    //     playerDataList[currentEntryIndex].playCountGame2 += 1;
+    //     SavePlayerData();
+
+    // }
+
+    // public void UpdateCurrentScoreGame3 (int currentEntryIndex)
+    // {
+    //     playerDataList[currentEntryIndex].playCountGame3 += 1;
+    //     SavePlayerData();
+
+    // }
 }

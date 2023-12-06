@@ -5,12 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerDataToUI : MonoBehaviour
 {
+    [SerializeField] GameObject panel;
     [SerializeField] GameObject scoreUIElementPrefab;
     [SerializeField] Transform elementWrapper;
 
     List<GameObject> uiElements = new List<GameObject>();
 
-    // Update is called once per frame
+    //subsribe to the event in playerdatahandler
+    private void OnEnable()
+    {
+        PlayerDataHandler.onplayerdataListChanged += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        PlayerDataHandler.onplayerdataListChanged -= UpdateUI;
+    }
     private void UpdateUI(List<InputEntry> list)
     {
         for (int i = 0; i < list.Count; i++)
@@ -24,6 +34,7 @@ public class PlayerDataToUI : MonoBehaviour
                     //intantiate new entry
                     var inst = Instantiate(scoreUIElementPrefab, Vector3.zero, Quaternion.identity);
                     inst.transform.SetParent(elementWrapper, false);
+                    
                     uiElements.Add(inst);
                 }
                 var texts = uiElements[i].GetComponentsInChildren<Text>();

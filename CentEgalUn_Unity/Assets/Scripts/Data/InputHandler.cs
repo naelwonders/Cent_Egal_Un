@@ -26,4 +26,16 @@ public class InputHandler : MonoBehaviour
         FileHandler.SaveToJSON<InputEntry>(entries, filename);
 
     }
+    public void RemoveNameFromList(string nameToRemove)
+{
+    // Find the entry to remove based on the name
+    InputEntry entryToRemove = entries.Find(entry => entry.nameOfPlayer == nameToRemove);
+
+    // Check if the entry was found
+    if (entryToRemove != null)
+    {
+        entries.Remove(entryToRemove); // Remove the entry from the list
+        FileHandler.SaveToJSON<InputEntry>(entries, filename); // Save the updated list to JSON
+    }
+}
 }
