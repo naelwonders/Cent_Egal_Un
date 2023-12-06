@@ -5,9 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-//https://www.youtube.com/watch?v=KZft1p8t2lQ je suis sur cette video pour faire l'input du name
-
-//j'arrive pas a coller l'input field dans la champs publique d'un script (je sais pas pourquoi)
+//https://www.youtube.com/watch?v=KZft1p8t2lQ 
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private TMP_InputField nameInput;
@@ -22,18 +20,10 @@ public class InputHandler : MonoBehaviour
 
     public void AddNameToList ()
     {
-        entries.Add(new InputEntry (nameInput.text));
+        entries.Add(new InputEntry (nameInput.text, 0, 0, 0)); //0 because the times played is zero when you sign up to the game 
         nameInput.text = "";
         
         FileHandler.SaveToJSON<InputEntry>(entries, filename);
 
-    }
-
-    public void DisplayAllEntries()
-    {
-        foreach (InputEntry entry in entries)
-        {
-            Debug.Log(entry.nameOfPlayer.ToString());
-        }
     }
 }
