@@ -6,6 +6,7 @@ using TMPro;
 
 public class WalletTrigger : MonoBehaviour, IDataPersistence
 {
+    
     private GameObject uiElement;
     private TMP_Text resultText; // Référence à l'élément Text de l'UI
     private string uiTag = "Amount";
