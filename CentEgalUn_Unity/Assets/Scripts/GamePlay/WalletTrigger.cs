@@ -6,10 +6,9 @@ using TMPro;
 
 public class WalletTrigger : MonoBehaviour, IDataPersistence
 {
-    
-    private GameObject uiElement;
-    private TMP_Text resultText; // Référence à l'élément Text de l'UI
-    private string uiTag = "Amount";
+    public gameUIHandler gameUIHandler;
+    //----
+
     private Coin coin;
 
     private int droppedAmount = 0;
@@ -38,9 +37,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
     void Start()
     {
-        // Find all GameObjects with the specified tag
-        uiElement = GameObject.FindGameObjectWithTag(uiTag);
-        resultText = uiElement.GetComponent<TMP_Text>();
         coins = GameObject.FindObjectsOfType<Coin>();
         oneEuro = GameObject.FindGameObjectWithTag("Finish");
         oneEuro.gameObject.SetActive(false);
@@ -52,7 +48,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        DisplayDroppedAmount(droppedAmount);
+        gameUIHandler.DisplayDroppedAmount(droppedAmount);
         //add a delay or deactivate them after the dissappearing rendering
         if (coin != null && coin.GetComponent<DragAndDropController>().isDragged == false)
         {
@@ -93,24 +89,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
             numberOfCoinsOnWallet -= 1;
         }
         coin = null;
-    }
-
-    private void DisplayDroppedAmount(int amount) 
-    {
-        if (amount < 10) 
-        {
-            resultText.text = "Montant : 0€0" + (amount).ToString();
-
-        }
-        else if (amount > 99)
-        {
-            resultText.text = "Montant : 1€00";
-        } 
-        else if (amount >= 10) 
-        {
-            resultText.text = "Montant : 0€" + (amount).ToString();
-        }
-        
     }
 
 }
