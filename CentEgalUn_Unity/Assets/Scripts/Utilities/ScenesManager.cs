@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//potentielles refs à un autre script: DataPersistenceManager.instance.NewGame() ou .LoadGame();
-
 // attention de ne pas appelé ce script SceneManager (sans S) car ca ecrase une fonction deja existante dans unity
 public class ScenesManager : MonoBehaviour
 {
@@ -14,26 +12,11 @@ public class ScenesManager : MonoBehaviour
     //the animator is here to have smoothe transitions between scene changes
     public Animator transitions;
     //singleton stat
-    void Awake()
-    {
-
-        if (manager == null) 
-        {
-            DontDestroyOnLoad(gameObject);
-            manager = this;
-        } 
-        else if (manager != this) 
-        {
-            Destroy(gameObject);
-        }
-    }
+   
 
     private void Start()
     {
-        if (DataPersistenceManager.instance != null)
-        {
-            DataPersistenceManager.instance.LoadGame();
-        }
+
     }
 
 

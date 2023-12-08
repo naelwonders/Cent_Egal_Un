@@ -9,27 +9,18 @@ public class gameUIHandler : MonoBehaviour
     // Référence à l'élément MONTANT de l'UI
     private string uiTag = "Amount";
     private GameObject uiElement;
-    private TMP_Text resultText; 
-    
-    //same thing mais via l'inspecteur
+    private TMP_Text resultText;
     public TMP_Text timerText;
-    private float timer = 60.0f; // Temps initial en secondes (60 secondes = 1 minute)
-
+    
+    public GameObject timesUpUI;
     // Start is called before the first frame update
     void Start()
     {
         // Find all GameObjects with the specified tag
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
-        timerText.text = timer.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        timer -= Time.deltaTime;
-        DisplayTimer(timer);
-
+        timesUpUI.SetActive(false);
+        
     }
 
     public void DisplayDroppedAmount(int amount) 
@@ -51,15 +42,15 @@ public class gameUIHandler : MonoBehaviour
 
     public void DisplayTimer(float timer)
     {
+        timesUpUI.SetActive(false);
         // Vérifiez si le temps est écoulé
         if (timer <= 0.0f)
         {
             //Mettre ici le code que vous souhaitez exécuter lorsque le temps est écoulé
-            Debug.Log("Temps écoulé !");
+            timesUpUI.SetActive(true);
             timer = 0.0f;
         }
         //to round the float into an int
         timerText.text = Mathf.Floor(timer).ToString();
     }
-
 }

@@ -7,11 +7,14 @@ using TMPro;
 public class WalletTrigger : MonoBehaviour, IDataPersistence
 {
     public gameUIHandler gameUIHandler;
-    //----
 
     private Coin coin;
 
     private int droppedAmount = 0;
+
+    private float timer = 11.0f; // 60 + 1 seconde car le fadein dure une seconde
+    //same thing pour le TIMER mais via l'inspecteur
+    
 
     public bool gameComplete = false;
     private GameObject oneEuro;
@@ -26,12 +29,12 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
     
     public void LoadData(GameData data)
     {
-        //get how many times the player completed game <add game number> in the past HOW??
+        //TODOget how many times the player completed game <add game number> in the past HOW??
     }
 
     public void SaveData(ref GameData data)
     {
-        //if game completed INCREMENT tHE NUMBER OF TIMES the player completed game <add game number> HOW??
+        //TODO: if game completed INCREMENT tHE NUMBER OF TIMES the player completed game <add game number> HOW??
     }
     
     //attention au 2D et il faut un rigid body sans gravité, car je ne veux pas qu'il tombe 
@@ -41,30 +44,56 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
         oneEuro = GameObject.FindGameObjectWithTag("Finish");
         oneEuro.gameObject.SetActive(false);
 
+
         particle = GetComponent<ParticleSystem>();
         particle.Stop(); 
+
+        //set the times up UI active as false;
     
     }
 
     void Update()
     {
+        timer -= Time.deltaTime;
         gameUIHandler.DisplayDroppedAmount(droppedAmount);
-        //add a delay or deactivate them after the dissappearing rendering
-        if (coin != null && coin.GetComponent<DragAndDropController>().isDragged == false)
-        {
-            coin = null;
-            if (droppedAmount >= 100)
-            {
-                foreach (Coin coin in coins)
-                {
-                    coin.gameObject.SetActive(false);
-                }
-                oneEuro.gameObject.SetActive(true);
+        gameUIHandler.DisplayTimer(timer);
 
+        //if the tiggering component is a coin (coin is not null)
+        //if the coin is dropped (not dragged)
+        if (coin != null && coin.GetComponent<DragAndDropController>().isDragged == false)
+        {   
+            // Comme ca le prochain update, on ne rentre plus dans cette boucle
+            coin = null;
+
+            //IF THE TIME IS NOT UP(second winning condition)
+            if (timer >= 0)
+            {
+                //IF 1 EURO HAS BEEN DROPPED (first winning condition)
+                if (droppedAmount == 100)
+                {
+                    gameComplete = true;
+                    foreach (Coin coin in coins)
+                    {
+                        coin.gameObject.SetActive(false);
+                    }
+                    oneEuro.gameObject.SetActive(true);
+                }
+            }
+            //TO DO: implement time's up UI popup
+            else
+            {
+
+            }
+
+            // WINNING : ici c'est pour les choses qui doivent se passer qu'une seule fois, quand le jeu est terminé avec sucess
+            if (gameComplete)
+            {
+                gameComplete = false;
                 //ADD SOME WINNING JUICINESS
-                particle.Play(); 
+                particle.Play();
                 gameFinishedSound.Play();
             }
+
         }
     }
 

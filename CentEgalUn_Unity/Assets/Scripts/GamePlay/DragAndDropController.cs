@@ -29,7 +29,6 @@ public class DragAndDropController : MonoBehaviour
         renderer2D = GetComponent<Renderer>();
         walletTrigger = GameObject.FindObjectOfType<WalletTrigger>();
         layerWhenDragging = 9;
-
     }
 
     // Update is called once per frame

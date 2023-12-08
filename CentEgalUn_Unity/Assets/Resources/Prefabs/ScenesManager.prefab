@@ -244,6 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4084118942470777735}
   - component: {fileID: 3638464403311041756}
+  - component: {fileID: 7503484720932415319}
   m_Layer: 0
   m_Name: ScenesManager
   m_TagString: Untagged
@@ -279,4 +280,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e953794af44fdb94f9462e7d4a92692c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitions: {fileID: 0}
+  transitions: {fileID: 7503484720932415319}
+--- !u!95 &7503484720932415319
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357677147537368972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 635de8f86fb7a7a4f93f9a161761b5b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
