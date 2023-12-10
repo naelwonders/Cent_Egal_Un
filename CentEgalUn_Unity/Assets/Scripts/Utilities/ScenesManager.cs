@@ -8,12 +8,17 @@ public class ScenesManager : MonoBehaviour
 {
 
     //the animator is here to have smoothe transitions between scene changes
-    public Animator transitions;
+    private Transitions transitions;
+
+    void Start()
+    {
+        transitions = GetComponent<Transitions>();
+    }
    
     //play first game function and manually set them in the inscpector
     public void PlayFirstGame() 
     {
-        StartCoroutine(PlayTransitionAnimation());
+        transitions.StartTransitionCoroutine();
         //ATTENTION: remarque qu'il n'y a pas de s ici, il s'agit d'une fonction built in de unity
         SceneManager.LoadScene("FirstGameScene");
     }
@@ -21,12 +26,12 @@ public class ScenesManager : MonoBehaviour
     //these scenes are not yet created 
     public void PlaySecondGame() 
     {
-        StartCoroutine(PlayTransitionAnimation());
+        transitions.StartTransitionCoroutine();
         SceneManager.LoadScene("SecondGameScene");
     }
     public void PlayThirdGame() 
     {
-        StartCoroutine(PlayTransitionAnimation());
+        transitions.StartTransitionCoroutine();
         SceneManager.LoadScene("ThirdGameScene"); 
     }
     
@@ -37,16 +42,9 @@ public class ScenesManager : MonoBehaviour
 
     public void BackToMainMenu() 
     {
-        StartCoroutine(PlayTransitionAnimation());
+        transitions.StartTransitionCoroutine();
         SceneManager.LoadScene(0);
     }
 
-    IEnumerator PlayTransitionAnimation()
-    {
-        //play transition animation
-        transitions.SetTrigger("start");
-        //for a few seconds
-        yield return new WaitForSeconds(1);
-    }
 
 }
