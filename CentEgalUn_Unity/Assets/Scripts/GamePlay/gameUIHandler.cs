@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//Ce script est accroché au empty --UI--
 public class gameUIHandler : MonoBehaviour
 {
     // Référence à l'élément MONTANT de l'UI
@@ -13,6 +14,8 @@ public class gameUIHandler : MonoBehaviour
     public TMP_Text timerText;
     
     public GameObject timesUpUI;
+
+    public GameObject winningUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class gameUIHandler : MonoBehaviour
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
         timesUpUI.SetActive(false);
+        winningUI.SetActive(false);
         
     }
 
@@ -40,14 +44,24 @@ public class gameUIHandler : MonoBehaviour
         }
     }
 
-    public void DisplayTimer(float timer)
+    public void DisplayTimer(float timer, bool gameComplete)
     {
-        timesUpUI.SetActive(false);
-        // Vérifiez si le temps est écoulé
-        if (timer <= 0.0f)
+        //timesUpUI.SetActive(false);
+        
+        if (timer >= 0)
         {
-            //Mettre ici le code que vous souhaitez exécuter lorsque le temps est écoulé
-            timesUpUI.SetActive(true);
+            if (gameComplete)
+            {
+                winningUI.SetActive(true);
+            }
+        }
+        // Vérifiez si le temps est écoulé
+        else if (timer < 0.0f)
+        {
+            if(!gameComplete)
+            {
+                timesUpUI.SetActive(true);
+            }
             timer = 0.0f;
         }
         //to round the float into an int

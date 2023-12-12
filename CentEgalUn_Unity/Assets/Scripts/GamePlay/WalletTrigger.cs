@@ -12,7 +12,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
     private int droppedAmount = 0;
 
-    private float timer = 11.0f; // 60 + 1 seconde car le fadein dure une seconde
+    private float timer = 16.0f; // 60 + 1 seconde car le fadein dure une seconde
     //same thing pour le TIMER mais via l'inspecteur
     
 
@@ -23,10 +23,10 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
     
     [HideInInspector] public int numberOfCoinsOnWallet = 0;
 
-    private ParticleSystem particle;
+    public ParticleSystem particle;
 
     public AudioSource gameFinishedSound;
-    
+
     public void LoadData(GameData data)
     {
         //TODOget how many times the player completed game <add game number> in the past HOW??
@@ -44,8 +44,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
         oneEuro = GameObject.FindGameObjectWithTag("Finish");
         oneEuro.gameObject.SetActive(false);
 
-
-        particle = GetComponent<ParticleSystem>();
         particle.Stop(); 
 
         //set the times up UI active as false;
@@ -56,7 +54,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
     {
         timer -= Time.deltaTime;
         gameUIHandler.DisplayDroppedAmount(droppedAmount);
-        gameUIHandler.DisplayTimer(timer);
+        gameUIHandler.DisplayTimer(timer, gameComplete);
 
         //if the tiggering component is a coin (coin is not null)
         //if the coin is dropped (not dragged)
@@ -65,11 +63,11 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
             // Comme ca le prochain update, on ne rentre plus dans cette boucle
             coin = null;
 
-            //IF THE TIME IS NOT UP(second winning condition)
-            if (timer >= 0)
+            //IF 1 EURO HAS BEEN DROPPED (first winning condition)
+            if (droppedAmount == 100)
             {
-                //IF 1 EURO HAS BEEN DROPPED (first winning condition)
-                if (droppedAmount == 100)
+                //IF THE TIME IS NOT UP(second winning condition)
+                if (timer >= 0)
                 {
                     gameComplete = true;
                     foreach (Coin coin in coins)
@@ -77,23 +75,10 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
                         coin.gameObject.SetActive(false);
                     }
                     oneEuro.gameObject.SetActive(true);
+                    particle.Play();
+                    gameFinishedSound.Play();
                 }
             }
-            //TO DO: implement time's up UI popup
-            else
-            {
-
-            }
-
-            // WINNING : ici c'est pour les choses qui doivent se passer qu'une seule fois, quand le jeu est terminé avec sucess
-            if (gameComplete)
-            {
-                gameComplete = false;
-                //ADD SOME WINNING JUICINESS
-                particle.Play();
-                gameFinishedSound.Play();
-            }
-
         }
     }
 
