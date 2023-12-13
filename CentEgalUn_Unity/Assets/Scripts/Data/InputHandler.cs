@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour
 
     public void AddNameToList ()
     {
-        entries.Add(new InputEntry (nameInput.text, 0, 0, 0)); //0 because the times played is zero when you sign up to the game 
+        entries.Add(new InputEntry (nameInput.text, 0)); //0 because the times played is zero when you sign up to the game 
         nameInput.text = "";
         
         FileHandler.SaveToJSON<InputEntry>(entries, filename);
