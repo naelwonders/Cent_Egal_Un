@@ -20,6 +20,7 @@ public class GridGenerator : MonoBehaviour
     // Start is called before the first frame update
     private float gridWidth, gridHeight;
     private float cellSizeX, cellSizeY;
+    public float xOffset; 
 
     private float randomWithinCellX, randomWithinCellY;
 
@@ -37,6 +38,9 @@ public class GridGenerator : MonoBehaviour
         cellSizeX = gridWidth / gridColumns; 
         cellSizeY = gridHeight / gridRows;
 
+        // Offset to place the grid more to the right
+        xOffset = - 1;
+
         //generer la position random dans le grid et dans la cellule pour un effet semi random (double boucle)
         for (int x = 0; x < gridColumns; x++)
         {
@@ -48,7 +52,8 @@ public class GridGenerator : MonoBehaviour
 
                 grid[x, y] = new GridCell
                 {
-                    position = new Vector3(x * cellSizeX + randomWithinCellX - gridWidth, y * cellSizeY + randomWithinCellY - gridHeight / 2, 0.0f),
+                    // position = new Vector3(x * cellSizeX + randomWithinCellX - gridWidth, y * cellSizeY + randomWithinCellY - gridHeight / 2, 0.0f),
+                    position = new Vector3(x * cellSizeX + randomWithinCellX + xOffset, y * cellSizeY + randomWithinCellY - gridHeight / 2, 0.0f),
                     isOccupied = false
                 };
             }

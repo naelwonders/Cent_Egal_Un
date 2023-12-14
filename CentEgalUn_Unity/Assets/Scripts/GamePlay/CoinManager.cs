@@ -42,20 +42,21 @@ public class CoinManager : MonoBehaviour
                 if (i < coinGenerator.listOfCoins.Count) 
                 {
                     prefabCoin = prefab.GetComponent<Coin>();
+
                     if (prefabCoin != null)
                     {
                         // Check if the "worth" field matches the target value
                         if (prefabCoin.worth == coinGenerator.listOfCoins[i])
                         {
                             //coin is the GameObject I want to instantiate
-                            prefabToSpanwn = prefab;// prendre le coin de la valeure du int a l'indice i de la liste 
+                            prefabToSpanwn = prefab;// prendre le coin de la valeure du int a l'indice i de la liste
+                
                         }
                     }
 
                 }
                 else 
                 {
-
                     if (prefab.tag == "Apple")
                     {
                         prefabToSpanwn = prefab;
@@ -75,6 +76,7 @@ public class CoinManager : MonoBehaviour
             // Positionner la pièce d'euro au centre de la case
             Vector3 spawnPosition = gridGenerator.grid[randomCellX, randomCellY].position;
             Instantiate(prefabToSpanwn, spawnPosition, Quaternion.identity);
+
 
             // Marquer la case comme occupée
             gridGenerator.grid[randomCellX, randomCellY].isOccupied = true;
