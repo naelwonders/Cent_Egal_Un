@@ -16,12 +16,15 @@ public class gameUIHandler : MonoBehaviour
     public GameObject timesUpUI;
 
     public GameObject winningUI;
+    //public JumpyMedal jumpyMedal;
     // Start is called before the first frame update
     void Start()
     {
         // Find all GameObjects with the specified tag
         uiElement = GameObject.FindGameObjectWithTag(uiTag);
         resultText = uiElement.GetComponent<TMP_Text>();
+
+
         timesUpUI.SetActive(false);
         winningUI.SetActive(false);
         
@@ -52,7 +55,7 @@ public class gameUIHandler : MonoBehaviour
         {
             if (gameComplete)
             {
-                winningUI.SetActive(true);
+                StartCoroutine(ShowWinningUIAfterDelay());
             }
         }
         // Vérifiez si le temps est écoulé
@@ -66,5 +69,13 @@ public class gameUIHandler : MonoBehaviour
         }
         //to round the float into an int
         timerText.text = Mathf.Floor(timer).ToString();
+    }
+
+    // Coroutine to show the winningUI after a delay
+    private IEnumerator ShowWinningUIAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        winningUI.SetActive(true);
+        //jumpyMedal.StartJumpTweeen();
     }
 }

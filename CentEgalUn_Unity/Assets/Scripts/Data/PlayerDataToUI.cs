@@ -27,7 +27,6 @@ public class PlayerDataToUI : MonoBehaviour
         for (int i = 0; i < list.Count; i++)
         {
             ScoreElement el = list[i];
-            Debug.Log(el.nameOfPlayer);
 
             if (i >= uiElements.Count)
             {
