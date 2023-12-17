@@ -10,6 +10,7 @@ public class DragAndDropController : MonoBehaviour
     private Vector3 originalPosition;
     private Coin coin;
     private Renderer renderer2D; //not allowed to use renderer cos it crashes another renderer
+    private ParticleSystem smokeFX;
 
 
     private int layerWhenDragging;
@@ -20,7 +21,7 @@ public class DragAndDropController : MonoBehaviour
     public AudioSource isDraggedSound;
     
     public AudioSource isDroppedSound;
-    
+
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class DragAndDropController : MonoBehaviour
         renderer2D = GetComponent<Renderer>();
         walletTrigger = GameObject.FindObjectOfType<WalletTrigger>();
         layerWhenDragging = 9;
+        smokeFX = GetComponentInChildren<ParticleSystem>();
+        
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class DragAndDropController : MonoBehaviour
         if (isDraggable && Input.GetMouseButtonDown(0)) //int of the button pressed, here the left one
         {
             isDraggedSound.Play();
+            smokeFX.Play();
             isDragged = true;
         }
     }
@@ -84,6 +88,7 @@ public class DragAndDropController : MonoBehaviour
             if (coin.onWallet)
             {
                 isDroppedSound.Play();
+                smokeFX.Stop();
             }
         }
     }

@@ -751,6 +751,7 @@ MonoBehaviour:
   numberOfCoinsOnWallet: 0
   particle: {fileID: 1365267358}
   gameFinishedSound: {fileID: 170573956}
+  zoomy: {fileID: 184539207}
 --- !u!61 &170573952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -930,6 +931,7 @@ GameObject:
   - component: {fileID: 184539204}
   - component: {fileID: 184539206}
   - component: {fileID: 184539205}
+  - component: {fileID: 184539207}
   m_Layer: 5
   m_Name: MontantPanel
   m_TagString: Untagged
@@ -995,6 +997,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184539203}
   m_CullTransparentMesh: 1
+--- !u!114 &184539207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184539203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e13a0008d1056d4582852a2d2108da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomFactor: 1.2
+  minScale: 0.5
+  maxScale: 2
+  zoomDuration: 1
 --- !u!114 &191569465 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 912164705671884713, guid: 81117095587098d40aaf12af9100090d, type: 3}
@@ -2011,7 +2029,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845658847}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -2139,7 +2157,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2840,7 +2858,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -12813,7 +12831,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabAppleSprite: {fileID: 21300000, guid: 00929e6cd28ab2543a0c58d3cd162836, type: 3}
-  numberOfApples: 3
 --- !u!4 &1789023342
 Transform:
   m_ObjectHideFlags: 0

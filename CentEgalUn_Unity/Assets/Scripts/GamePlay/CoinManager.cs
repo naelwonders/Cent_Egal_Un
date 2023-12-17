@@ -13,7 +13,7 @@ public class CoinManager : MonoBehaviour
     private GameObject[] prefabVariants;
 
     public Sprite prefabAppleSprite;
-    public int numberOfApples = 3;
+    private int numberOfApples = 5;
     
 
     void Start()
