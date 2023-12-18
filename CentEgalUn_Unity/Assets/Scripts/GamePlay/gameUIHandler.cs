@@ -17,7 +17,7 @@ public class gameUIHandler : MonoBehaviour
 
     public GameObject winningUI;
 
-    public TweenUI tween;
+    public TweenUIGame tween;
     
     void Start()
     {

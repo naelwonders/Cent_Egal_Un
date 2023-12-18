@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TweenUI : MonoBehaviour
+public class TweenUIGame : MonoBehaviour
 {
     [SerializeField] GameObject winningPanel, timesUpPanel; 
    
