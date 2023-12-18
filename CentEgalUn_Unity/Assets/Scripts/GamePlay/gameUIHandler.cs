@@ -16,8 +16,9 @@ public class gameUIHandler : MonoBehaviour
     public GameObject timesUpUI;
 
     public GameObject winningUI;
-    //public JumpyMedal jumpyMedal;
-    // Start is called before the first frame update
+
+    public TweenUI tween;
+    
     void Start()
     {
         // Find all GameObjects with the specified tag
@@ -49,7 +50,6 @@ public class gameUIHandler : MonoBehaviour
 
     public void DisplayTimer(float timer, bool gameComplete)
     {
-        //timesUpUI.SetActive(false);
         
         if (timer >= 0)
         {
@@ -64,6 +64,7 @@ public class gameUIHandler : MonoBehaviour
             if(!gameComplete)
             {
                 timesUpUI.SetActive(true);
+                tween.TimesUpTween();
             }
             timer = 0.0f;
         }
@@ -76,6 +77,6 @@ public class gameUIHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         winningUI.SetActive(true);
-        //jumpyMedal.StartJumpTweeen();
+        tween.WinningPanelTween();
     }
 }

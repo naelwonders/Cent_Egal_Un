@@ -27,8 +27,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
     public AudioSource gameFinishedSound;
 
-    
-    public Zoomy zoomy;
 
     public void LoadData(GameData data)
     {
@@ -93,7 +91,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
         {
             coin.onWallet = true;
             droppedAmount += coin.worth;
-            zoomy.ZoomOnce();
             numberOfCoinsOnWallet += 1;
         }
     }
