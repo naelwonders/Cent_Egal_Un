@@ -27,6 +27,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
     public AudioSource gameFinishedSound;
 
+    public TweenUIGame tweenGame;
 
     public void LoadData(GameData data)
     {
@@ -47,8 +48,6 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
 
         particle.Stop(); 
 
-        //set the times up UI active as false;
-    
     }
 
     void Update()
@@ -61,6 +60,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
         //if the coin is dropped (not dragged)
         if (coin != null && coin.GetComponent<DragAndDropController>().isDragged == false)
         {   
+            tweenGame.MontantTween();
             // Comme ca le prochain update, on ne rentre plus dans cette boucle
             coin = null;
 
@@ -77,6 +77,7 @@ public class WalletTrigger : MonoBehaviour, IDataPersistence
                     }
                     oneEuro.gameObject.SetActive(true);
                     particle.Play();
+                    gameFinishedSound.volume = 0.5f;
                     gameFinishedSound.Play();
                 }
             }

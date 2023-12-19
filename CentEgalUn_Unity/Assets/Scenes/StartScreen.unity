@@ -426,7 +426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.75, y: -58.9}
+  m_AnchoredPosition: {x: -8.75, y: -48.7}
   m_SizeDelta: {x: 343.5, y: 68.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &177506716
@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 336868928}
   - component: {fileID: 336868927}
   - component: {fileID: 336868926}
+  - component: {fileID: 336868929}
   m_Layer: 5
   m_Name: "Cr\xE9dits"
   m_TagString: Untagged
@@ -955,6 +956,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336868924}
   m_CullTransparentMesh: 1
+--- !u!114 &336868929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336868924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bf0d7ed97f01641802af141e5868a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatDuration: 1
+  scaleAmount: 1.2
 --- !u!1 &342426961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2053427591984840561, guid: 81117095587098d40aaf12af9100090d, type: 3}
@@ -1330,7 +1345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000018119812, y: -99.60001}
+  m_AnchoredPosition: {x: -0.000018119812, y: -85.9}
   m_SizeDelta: {x: 343.5, y: 68.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478517130
@@ -1380,8 +1395,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2381,7 +2396,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000018119812, y: -20}
-  m_SizeDelta: {x: 250, y: 68.1}
+  m_SizeDelta: {x: 330, y: 68.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842784342
 MonoBehaviour:
@@ -2403,8 +2418,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: les formateur.rice.s, le personnel d'encadrement et logistique, et les
-    camarades de classe !!
+  m_text: Merci aux formateur.rice.s, au personnel d'encadrement et logistique, aux
+    financeurs et surtout aux camarades de classe <3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f4321808569c6540bc37d869172a746, type: 2}
   m_sharedMaterial: {fileID: -516382728467542025, guid: 1f4321808569c6540bc37d869172a746, type: 2}
@@ -2670,8 +2685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000018119812, y: -21.3}
-  m_SizeDelta: {x: 250, y: 68.1}
+  m_AnchoredPosition: {x: -1.3, y: -21.3}
+  m_SizeDelta: {x: 330, y: 68.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &983392408
 MonoBehaviour:
@@ -2693,7 +2708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'sprites par PSEUDO et son par PSEUDO
+  m_text: 'UI assets par Penzilla, musique par Tubelesshalo (itch.io)
 
 '
   m_isRightToLeft: 0
@@ -4369,7 +4384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.75, y: -127}
+  m_AnchoredPosition: {x: -8.75, y: -116.3}
   m_SizeDelta: {x: 343.5, y: 68.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624386643
@@ -6645,8 +6660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225.49992, y: -332.7}
-  m_SizeDelta: {x: 216.3, y: 50}
+  m_AnchoredPosition: {x: 225.49992, y: -279.6}
+  m_SizeDelta: {x: 330, y: 41.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &703161247269540388
 RectTransform:
@@ -6941,7 +6956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47.99997, y: 123.2}
+  m_AnchoredPosition: {x: 47.99997, y: 107.9}
   m_SizeDelta: {x: 412.6, y: 72.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3172153281897242420
@@ -7765,6 +7780,7 @@ GameObject:
   - component: {fileID: 3172153281897242420}
   - component: {fileID: 2397301473126112212}
   - component: {fileID: 5436390972899092574}
+  - component: {fileID: 6614198717914177795}
   m_Layer: 0
   m_Name: CreditsImage
   m_TagString: Untagged
@@ -7772,6 +7788,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6614198717914177795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6614198717914177794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bf0d7ed97f01641802af141e5868a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatDuration: 3
+  scaleAmount: 1.2
 --- !u!1 &6653752350466732859
 GameObject:
   m_ObjectHideFlags: 0
@@ -7844,7 +7874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Leur envoyer des bonnes ondes
+  m_text: "Envoyer des bisous t\xE9l\xE9pathiques"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6b31a7a3fe4b3434fa80b5c837c8b0c3, type: 2}
   m_sharedMaterial: {fileID: -8295390036491278510, guid: 6b31a7a3fe4b3434fa80b5c837c8b0c3, type: 2}
@@ -7871,10 +7901,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.85
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -8016,8 +8046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -34.87497, y: 2.405014}
-  m_SizeDelta: {x: 696.74994, y: 349.58676}
+  m_AnchoredPosition: {x: -35.750015, y: 2.4999924}
+  m_SizeDelta: {x: 735.2999, y: 395.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &8162352198577991561
 CanvasGroup:
@@ -8085,8 +8115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30.699974, y: 4.700001}
-  m_SizeDelta: {x: 332.79993, y: 293.6}
+  m_AnchoredPosition: {x: -30.699974, y: 9}
+  m_SizeDelta: {x: 332.79993, y: 226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -102,7 +102,7 @@ MonoBehaviour:
   isDraggable: 1
   isDragged: 0
   isDraggedSound: {fileID: -3746628601142308431}
-  isDroppedSound: {fileID: 0}
+  isDroppedSound: {fileID: -3746628601142308431}
 --- !u!58 &1884992609511231529
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -22,7 +22,6 @@ public class DragAndDropController : MonoBehaviour
     
     public AudioSource isDroppedSound;
 
-    //public VolumeControl volumeControl;
 
 
     void Start()
@@ -77,8 +76,11 @@ public class DragAndDropController : MonoBehaviour
         {
             isDraggedSound.volume = 0.5f;
             isDraggedSound.Play();
-            smokeFX.Play();
             isDragged = true;
+            if (coin != null) 
+            {
+                smokeFX.Play();
+            }
         }
     }
 

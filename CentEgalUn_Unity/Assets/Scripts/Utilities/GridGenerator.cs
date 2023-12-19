@@ -39,7 +39,7 @@ public class GridGenerator : MonoBehaviour
         cellSizeY = gridHeight / gridRows;
 
         // Offset to place the grid more to the right
-        xOffset = - 1;
+        xOffset = - 1.5f;
 
         //generer la position random dans le grid et dans la cellule pour un effet semi random (double boucle)
         for (int x = 0; x < gridColumns; x++)

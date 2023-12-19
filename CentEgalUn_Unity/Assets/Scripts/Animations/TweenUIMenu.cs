@@ -44,17 +44,22 @@ public class TweenUIMenu : MonoBehaviour
         .setEase(LeanTweenType.easeInOutQuad)
         .setOnComplete(() => {
             creditMenu.SetActive(false);
-            // This code will be executed when the tween is completed.
-            // You can put any additional actions you want here.
         });
     }
 
     public void PlayButtonTween()
     {
         LeanTween.init(10000);
-        LeanTween.scale(playButton, new Vector3 (1.5f,1.5f,1.5f), 2f).setEase(LeanTweenType.easeOutElastic).setOnComplete(() => {
-            LeanTween.scale(playButton, new Vector3 (1f,1f,1f), 2f).setEase(LeanTweenType.easeInElastic);
-        }).setLoopClamp();
+        LeanTween.scale(playButton, new Vector3 (1.5f,1.5f,1.5f), 2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => {
+            FollowUpPlayButtonTween();
+        });
+    }
+
+    public void FollowUpPlayButtonTween()
+    {
+        LeanTween.scale(playButton, new Vector3 (1f,1f,1f), 2f).setEase(LeanTweenType.linear).setOnComplete(() => {
+            PlayButtonTween();
+        });
     }
     
 }

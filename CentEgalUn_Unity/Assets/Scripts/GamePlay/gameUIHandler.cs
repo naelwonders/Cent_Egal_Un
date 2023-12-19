@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
 
 //Ce script est accroché au empty --UI--
 public class gameUIHandler : MonoBehaviour
@@ -17,7 +18,14 @@ public class gameUIHandler : MonoBehaviour
 
     public GameObject winningUI;
 
-    public TweenUIGame tween;
+    public TweenUIGame tweenGame;
+
+    public AudioSource timesTickingSound;
+
+    private bool hasPlayedSound = false;
+
+    //public AudioSource click;
+
     
     void Start()
     {
@@ -28,11 +36,13 @@ public class gameUIHandler : MonoBehaviour
 
         timesUpUI.SetActive(false);
         winningUI.SetActive(false);
+        timerText.color = Color.black;
         
     }
 
     public void DisplayDroppedAmount(int amount) 
     {
+
         if (amount < 10) 
         {
             resultText.text = "Montant : 0€0" + (amount).ToString();
@@ -57,6 +67,13 @@ public class gameUIHandler : MonoBehaviour
             {
                 StartCoroutine(ShowWinningUIAfterDelay());
             }
+        else if (timer <= 4)
+        {
+            if (!gameComplete)
+            {
+                StartCoroutine(TimesAlmostUp());
+            }
+        }
         }
         // Vérifiez si le temps est écoulé
         else if (timer < 0.0f)
@@ -64,7 +81,7 @@ public class gameUIHandler : MonoBehaviour
             if(!gameComplete)
             {
                 timesUpUI.SetActive(true);
-                tween.TimesUpTween();
+                tweenGame.TimesUpTween();
             }
             timer = 0.0f;
         }
@@ -72,11 +89,28 @@ public class gameUIHandler : MonoBehaviour
         timerText.text = Mathf.Floor(timer).ToString();
     }
 
+    // public void PlayClickingSound()
+    // {
+    //     click.Play();
+    // }
+
     // Coroutine to show the winningUI after a delay
     private IEnumerator ShowWinningUIAfterDelay()
     {
         yield return new WaitForSeconds(5f);
         winningUI.SetActive(true);
-        tween.WinningPanelTween();
+        tweenGame.WinningPanelTween();
+    }
+
+    private IEnumerator TimesAlmostUp()
+    {
+        if (!hasPlayedSound) // Check if the sound hasn't been played yet
+        {
+            timerText.color = Color.red;
+            tweenGame.ClockTween();
+            timesTickingSound.Play();
+            hasPlayedSound = true; // Set the flag to indicate that the sound has been played
+        }
+        yield return null; // Yield to the next frame
     }
 }
